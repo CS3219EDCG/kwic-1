@@ -36,7 +36,7 @@ public class CircularShift {
 
         String[] filteredShifts = getShiftsWithoutIgnoredWordLeading(shifts);
         String[] filteredRequiredShifts = getShiftsWithRequiredWord(filteredShifts);
-        for (int i=0;i<filteredShifts.length;i++) {
+        for (int i=0;i<filteredRequiredShifts.length;i++) {
             filteredRequiredShifts[i] = capitalizeWordsNotIgnoredInShift(filteredRequiredShifts[i]);
         }
 
