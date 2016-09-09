@@ -12,6 +12,7 @@ public class CircularShift {
     public static String DELIMITER = " ";
     private String _line;
     private WordsToIgnore _wordsToIgnore;
+    private WordsRequired _wordsRequired;
 
     /**
      * input should not be null
@@ -21,6 +22,7 @@ public class CircularShift {
         assert(line != null);
         this._line = line.toLowerCase();
         this._wordsToIgnore = WordsToIgnore.getWordsToIgnore();
+        this._wordsRequired = WordsRequired.getWordsRequired();
     }
 
     public String[] getCircularShifts() {
@@ -33,11 +35,12 @@ public class CircularShift {
         }
 
         String[] filteredShifts = getShiftsWithoutIgnoredWordLeading(shifts);
+        String[] filteredRequiredShifts = getShiftsWithRequiredWord(filteredShifts);
         for (int i=0;i<filteredShifts.length;i++) {
-            filteredShifts[i] = capitalizeWordsNotIgnoredInShift(filteredShifts[i]);
+            filteredRequiredShifts[i] = capitalizeWordsNotIgnoredInShift(filteredRequiredShifts[i]);
         }
 
-        return filteredShifts;
+        return filteredRequiredShifts;
     }
 
     private String getShiftedLine(int index, String[] words) {
@@ -71,8 +74,25 @@ public class CircularShift {
         return shiftList.toArray(new String[shiftList.size()]);
     }
 
+    private String[] getShiftsWithRequiredWord(String[] shifts) {
+        List<String> shiftList = new ArrayList<String>(Arrays.asList(shifts));
+
+        Iterator<String> iter = shiftList.iterator();
+        while (iter.hasNext()) {
+            if (isShiftStartingWithRequiredWord(iter.next())) {
+                iter.remove();
+            }
+        }
+
+        return shiftList.toArray(new String[shiftList.size()]);
+    }
+
     private boolean isShiftStartingWithIgnoredWord(String line) {
         return this._wordsToIgnore.isWordIgnored(line.split(DELIMITER)[0]);
+    }
+
+    private boolean isShiftStartingWithRequiredWord(String line) {
+        return this._wordsRequired.isWordRequired(line.split(DELIMITER)[0]);
     }
 
     private String capitalizeWordsNotIgnoredInShift(String shift) {
