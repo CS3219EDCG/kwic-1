@@ -79,7 +79,7 @@ public class CircularShift {
 
         Iterator<String> iter = shiftList.iterator();
         while (iter.hasNext()) {
-            if (isShiftStartingWithRequiredWord(iter.next())) {
+            if (!isShiftStartingWithRequiredWord(iter.next())) {
                 iter.remove();
             }
         }
