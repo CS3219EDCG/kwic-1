@@ -20,8 +20,8 @@ public class CircularShiftTest {
         }
         assertTrue(testSet.size() == 4);
         assertTrue(testSet.contains("Test This Circular Shift"));
-        assertTrue(testSet.contains("This Circular Shift Test"));
-        assertTrue(testSet.contains("Circular Shift Test This"));
-        assertTrue(testSet.contains("Shift Test This Circular"));
+        assertFalse(testSet.contains("This Circular Shift Test"));
+        assertFalse(testSet.contains("Circular Shift Test This"));
+        assertFalse(testSet.contains("Shift Test This Circular"));
     }
 }
