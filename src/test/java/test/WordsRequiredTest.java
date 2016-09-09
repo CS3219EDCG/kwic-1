@@ -15,11 +15,11 @@ public class WordsToIgnoreTest {
 
         wordsRequired.addWordRequired("test");
         //wordsToIgnore.addWordToIgnore("of");
-        wordsRequired.addWordRequired("");
+        //wordsRequired.addWordRequired("");
         assertTrue(wordsRequired.isWordRequired("test"));
         //assertTrue(wordsToIgnore.isWordIgnored("of"));
-        assertTrue(wordsRequired.isWordRequired(""));
-        assertFalse(wordsRequired.isWordRequired("after"));
+        //assertTrue(wordsRequired.isWordRequired(""));
+        //assertFalse(wordsRequired.isWordRequired("after"));
         //assertFalse(wordsToIgnore.isWordIgnored("before"));
         /*
         wordsToIgnore.addWordToIgnore("of"); // add duplicated word
